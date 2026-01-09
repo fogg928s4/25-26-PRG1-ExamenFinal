@@ -47,24 +47,17 @@ public class SimuladorCajero {
                     numeroOperaciones++;
                     System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
 
-                    if (indiceHistorial < 10) {
-                        actualizarHistorial(indiceHistorial, historialTipos, "Retiro", historialMontos, cantidad);
-                        indiceHistorial++;
-                    }
+                    indiceHistorial = indiceHistorial + actualizarHistorial(indiceHistorial, historialTipos, "Retiro", historialMontos, cantidad);
+                    
                 }
-            } else if (opcion == 3) {
+            } else if (opcion == 3) {                              
                 System.out.print("Cuanto deseas depositar? ");
                 double cantidad = scanner.nextDouble();
-                if (cantidad > 0) {
-                     saldoActual =  saldoActual + cantidad;
-                     totalDepositado = totalDepositado + cantidad;
-                    // El total depositado (td) no se actualiza (pendiente corregirlo!!!)
+                if (verificarDeposito(cantidad)) {
+                    depositarDinero(saldoActual, totalDepositado, cantidad);
                     numeroOperaciones++;
-                    System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
-                    if (indiceHistorial < 10) {
-                        actualizarHistorial(indiceHistorial, historialTipos, "Deposito", historialMontos, cantidad);
-                        indiceHistorial++;
-                    }
+                    indiceHistorial = indiceHistorial + actualizarHistorial(indiceHistorial, historialTipos, "Deposito", historialMontos, cantidad);
+                  
                 } else {
                     System.out.println("Cantidad invalida");
                 }
@@ -117,9 +110,24 @@ public class SimuladorCajero {
 
     }
 
-    static void actualizarHistorial(int indice, String[] historialTipos, String tipo ,double[] historialMontos, double monto) {
-        historialTipos[indice] = tipo;
-        historialMontos[indice] = monto;
+    static boolean verificarDeposito(double cantidad) {
+        return cantidad > 0;
+    }
+    static double depositarDinero(double saldoActual,double totalDepositado, double cantidad) {
+         saldoActual =  saldoActual + cantidad;
+         totalDepositado = totalDepositado + cantidad;
+         // El total depositado (td) no se actualiza (pendiente corregirlo!!!)
+         System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
+    }
+
+    static int actualizarHistorial(int indice, String[] historialTipos, String tipo ,double[] historialMontos, double monto) {
+        int registrosActualizados = 0;
+        if(indiceHistorial < 10) {
+            historialTipos[indice] = tipo;
+            historialMontos[indice] = monto;
+            registrosActualizados = 1;
+        }
+        return registrosActualizados;
     }
 
     static void mostrarEstadisticas(int numeroOperaciones, double totalRetirado, double totalDepositado, double comisionesTotales, double saldoInicial) {

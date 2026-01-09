@@ -57,7 +57,22 @@ Para cada acción del menú, se han creado métodos estáticos para mejorar la legib
 
 ### Guardar en historial
 
-Se crea un método estático que permite actualizar el historial de transacciones de forma más limpia.
+Se crea un método estático que permite actualizar el historial de transacciones de forma más limpia. Este retorna un número según se hayan realizado cambios o no al historial (+1 o 0 si no se realizaron cambios). Este número se suma al índice global del historial.
+
+### [3] Depositar Dinero
+
+Creación de un método estático para depositar dinero al presionar la opción 3 del menú. Esta actualiza el saldo actual con la cantidad depositada (previamente verificada) y muestra un mensaje de éxito al usuario.
+
+```java
+    static double depositarDinero(double saldoActual,double totalDepositado, double cantidad) {
+         saldoActual =  saldoActual + cantidad;
+         totalDepositado = totalDepositado + cantidad;
+         // El total depositado (td) no se actualiza (pendiente corregirlo!!!)
+         System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
+    }
+```
+
+Este método siempre toma en cuenta la actualización del total depositado que se realizó en un commit anterior.
 
 ### [4] Ver Estadisticas
 
