@@ -33,13 +33,7 @@ public class SimuladorCajero {
             } else if (opcion == 2);
                 System.out.print("Cuanto deseas retirar? ");
                 double cantidad = scanner.nextDouble();
-                if (cantidad <= 0) {
-                    System.out.println("Cantidad invalida.");
-                } else if (retiradoHoy + cantidad > limiteDiario) {
-                    System.out.println("ERROR: Has superado tu limite de retiro diario de " + limiteDiario + " euros.");
-                    System.out.println("Has retirado hoy: " + retiradoHoy + " euros.");
-                } else if ( saldoActual < cantidad + comision) {
-                    System.out.println("Saldo insuficiente (necesitas " + (cantidad + comision) + " euros).");
+                if (retiroValido(cantidad, LIMITE_DIARIO, retiradoHoy, saldoActual, COMISION));
                 } else {
                     saldoActual =  saldoActual - (cantidad + comision);
                     totalRetirado = totalRetirado + cantidad;
@@ -107,8 +101,20 @@ public class SimuladorCajero {
     static void retirarDinero() {
 
     }
-    static boolean verificarRetiro() {
-
+    static boolean retiroValido(double cantidad, double limiteDiario, double retiradoHoy, double saldoActual, double comision) {
+         if (cantidad <= 0) {
+            System.out.println("Cantidad invalida.");
+            return false;
+         } else if (retiradoHoy + cantidad > limiteDiario) {
+            System.out.println("ERROR: Has superado tu limite de retiro diario de " + limiteDiario + " euros.");
+            System.out.println("Has retirado hoy: " + retiradoHoy + " euros.");
+            return false;
+         } else if ( saldoActual < cantidad + comision) {
+            System.out.println("Saldo insuficiente (necesitas " + (cantidad + comision) + " euros).");
+            return false;
+         }
+         else
+            return true;
     }
 
     static boolean verificarDeposito(double cantidad) {

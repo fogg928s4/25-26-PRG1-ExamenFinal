@@ -115,3 +115,7 @@ Se crea un método estático para ver los últimos movimientos realizados. Un senci
         }
     }
 ```
+
+## [2] Retirar Dinero
+
+Verifica que el retiro sea valido
