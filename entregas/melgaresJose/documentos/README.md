@@ -22,6 +22,14 @@ Se han realizado los siguientes cambios a los nombres de las variables
 `c` -> `cantidad`
 `com_tot` -> `comisionesTotales`
 
+## Constantes
+
+Durante la refactorización del código se decicidió por el cambio en los nombres de ciertas variables por _SNAKE_CASE_ y declararse como constantes, al ser valores fijos. Los cambios realizados son:
+`comision` -> `COMISION`
+`saldoInicial` -> `SALDO_INICIAL`
+`limiteDiario` -> `LIMITE_DIARIO`
+
+
 ## Actualizacion de Total Depositado
 
 En la línea 69 se realiza la actualización que quedaba pendiente del total depositado

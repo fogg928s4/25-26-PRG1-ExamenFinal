@@ -4,14 +4,15 @@ public class SimuladorCajero {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         double saldoActual = 1000.0; // saldo
-        double saldoInicial = saldoActual;
+
+        final double SALDO_INICIAL = saldoActual;
+        final double COMISION = 1.0; // COMISION
+        final double LIMITE_DIARIO = 600.0; // limite diario
+
         int numeroOperaciones = 0; // num ops
         double totalRetirado = 0; // total retirado
         double totalDepositado = 0; // total depositado
         
-        // Nuevas vars
-        double comision = 1.0; // comision
-        double limiteDiario = 600.0; // limite diario
         double retiradoHoy = 0.0; // retirado hoy
         double comisionesTotales = 0.0; // comisiones
         
@@ -25,7 +26,7 @@ public class SimuladorCajero {
 
         int opcion = 1;
         do {
-            mostrarMenu(comision);
+            mostrarMenu(COMISION);
             opcion = scanner.nextInt();
             if (opcion == 1) {
                 consultarSaldo(saldoActual);
@@ -62,10 +63,10 @@ public class SimuladorCajero {
                     System.out.println("Cantidad invalida");
                 }
             } else if (opcion == 4) {
-                mostrarEstadisticas(numeroOperaciones, totalRetirado, totalDepositado, comisionesTotales, saldoInicial, saldoActual);             
+                mostrarEstadisticas(numeroOperaciones, totalRetirado, totalDepositado, comisionesTotales, SALDO_INICIAL, saldoActual);             
             }
             else if (opcion == 6) {
-                verUltimosMovimientos(historialTipos, historialMontos, int indiceHistorial);
+                verUltimosMovimientos(historialTipos, historialMontos, indiceHistorial);
             } else if (opcion == 7) {
                 indiceHistorial = 0;
                 System.out.println("Historial de movimientos borrado.");
