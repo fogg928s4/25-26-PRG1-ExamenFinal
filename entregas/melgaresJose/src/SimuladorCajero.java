@@ -46,9 +46,9 @@ public class SimuladorCajero {
                     comisionesTotales = comisionesTotales + comision;
                     numeroOperaciones++;
                     System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
+
                     if (indiceHistorial < 10) {
-                        historialTipos[indiceHistorial] = "Retiro";
-                        historialMontos[indiceHistorial] = cantidad;
+                        actualizarHistorial(indiceHistorial, historialTipos, "Retiro", historialMontos, cantidad);
                         indiceHistorial++;
                     }
                 }
@@ -62,27 +62,14 @@ public class SimuladorCajero {
                     numeroOperaciones++;
                     System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
                     if (indiceHistorial < 10) {
-                        historialTipos[indiceHistorial] = "Deposito";
-                        historialMontos[indiceHistorial] = cantidad;
+                        actualizarHistorial(indiceHistorial, historialTipos, "Deposito", historialMontos, cantidad);
                         indiceHistorial++;
                     }
                 } else {
                     System.out.println("Cantidad invalida");
                 }
             } else if (opcion == 4) {
-                System.out.println();
-                System.out.println("Estadisticas de tu cuenta:");
-                System.out.println("- Operaciones realizadas: " + n);
-                System.out.println("- Total retirado: " + totalRetirado + " euros");
-                System.out.println("- Total depositado: " + totalDepositado + " euros");
-                System.out.println("- Total comisiones: " + comisionesTotales + " euros");
-                System.out.println("- Saldo neto (operaciones): " + (totalDepositado - totalRetirado) + " euros");
-                System.out.println("- Saldo inicial era: " + si + " euros");
-                if ( saldoActual == saldoInicial + totalDepositado - totalRetirado - comisionesTotales) {
-                    System.out.println("- Estado de cuenta: CORRECTO");
-                } else {
-                    System.out.println("- Estado de cuenta: INCONSISTENTE");
-                }
+                mostrarEstadisticas(numeroOperaciones, totalRetirado, totalDepositado, comisionesTotales, saldoInicial, saldoActual);             
             }
             else if (opcion == 6) {
                 System.out.println();
@@ -136,5 +123,28 @@ public class SimuladorCajero {
     }
     static boolean verificarRetiro() {
 
+    }
+
+    static void actualizarHistorial(int indice, String[] historialTipos, String tipo ,double[] historialMontos, double monto) {
+        historialTipos[indice] = tipo;
+        historialMontos[indice] = monto;
+    }
+
+    static void mostrarEstadisticas(int numeroOperaciones, double totalRetirado, double totalDepositado, double comisionesTotales, double saldoInicial) {
+        System.out.println("Estadisticas de tu cuenta:");
+        System.out.println("- Operaciones realizadas: " + numeroOperaciones);
+        System.out.println("- Total retirado: " + totalRetirado + " euros");
+        System.out.println("- Total depositado: " + totalDepositado + " euros");
+        System.out.println("- Total comisiones: " + comisionesTotales + " euros");
+        System.out.println("- Saldo neto (operaciones): " + (totalDepositado - totalRetirado) + " euros");
+        System.out.println("- Saldo inicial era: " + saldoInicial + " euros");
+        if ( esConsistenteCuenta(saldoActual,saldoInicial, totalDepositado,totalRetirado, comisionesTotales)) {
+            System.out.println("- Estado de cuenta: CORRECTO");
+        } else {
+            System.out.println("- Estado de cuenta: INCONSISTENTE");
+        }
+    }
+    static void esConsistenteCuenta(double saldoActual,double saldoInicial, double totalDepositado, double totalRetirado, double comisionesTotales) {
+        return saldoActual == saldoInicial + totalDepositado - totalRetirado - comisionesTotales;
     }
 }

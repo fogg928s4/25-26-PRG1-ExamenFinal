@@ -54,3 +54,23 @@ a la forma siguiente:
 ## Creacion de metodos para elementos del menú
 
 Para cada acción del menú, se han creado métodos estáticos para mejorar la legibilidad y limpieza del código.
+
+### Guardar en historial
+
+Se crea un método estático que permite actualizar el historial de transacciones de forma más limpia.
+
+### [4] Ver Estadisticas
+
+Creación de un método estático para la visualización de las estadísticas de la cuenta bancaria. Este toma los datos de la cuenta y se los presenta al usuario.
+
+```java
+    static void mostrarEstadisticas(int numeroOperaciones, double totalRetirado, double totalDepositado, double comisionesTotales, double saldoInicial) {
+        System.out.println("Estadisticas de tu cuenta:");
+        ...
+        if ( esConsistenteCuenta(saldoActual,saldoInicial, totalDepositado,totalRetirado, comisionesTotales)) {
+            System.out.println("- Estado de cuenta: CORRECTO");
+        } else {
+            System.out.println("- Estado de cuenta: INCONSISTENTE");
+        }
+    }
+```
