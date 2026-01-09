@@ -21,3 +21,11 @@ Se han realizado los siguientes cambios a los nombres de las variables
 `hist_idx` -> `indiceHistorial`
 `c` -> `cantidad`
 `com_tot` -> `comisionesTotales`
+
+## Actualizacion de Total Depositado
+
+En la línea 69 se realiza la actualización que quedaba pendiente del total depositado
+
+```java
+   totalDepositado = totalDepositado + cantidad;
+```

@@ -66,6 +66,7 @@ public class SimuladorCajero {
                 double cantidad = scanner.nextDouble();
                 if (cantidad > 0) {
                      saldoActual =  saldoActual + cantidad;
+                     totalDepositado = totalDepositado + cantidad;
                     // El total depositado (td) no se actualiza (pendiente corregirlo!!!)
                     numeroOperaciones++;
                     System.out.println("Operacion exitosa. Nuevo saldo: " +  saldoActual + " euros");
