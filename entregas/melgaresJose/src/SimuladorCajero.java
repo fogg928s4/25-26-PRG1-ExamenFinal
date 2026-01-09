@@ -23,21 +23,12 @@ public class SimuladorCajero {
         System.out.println("Cajero Automatico - Banco Nacional");
         System.out.println("Saldo inicial: " + saldoActual + " euros");
 
-        while (true) {
-            System.out.println();
-            System.out.println("[1] Consultar saldo");
-            System.out.println("[2] Retirar dinero (comision: " + comision + " eur)");
-            System.out.println("[3] Depositar dinero");
-            System.out.println("[4] Ver estadisticas");
-            System.out.println("[5] Salir");
-            System.out.println("[6] Ver ultimos movimientos");
-            System.out.println("[7] Borrar historial");
-            System.out.println("[0] Avanzar al siguiente dia (reinicia limite)");
-            System.out.print("Seleccione opcion: ");
-            int opcion = scanner.nextInt();
-
+        int opcion = 1;
+        do {
+            mostrarMenu();
+            opcion = scanner.nextInt();
             if (opcion == 1) {
-                System.out.println("Tu saldo actual es: " +  saldoActual + " euros");
+                consultarSaldo(saldoActual);
             } else if (opcion == 2) {
                 System.out.print("Cuanto deseas retirar? ");
                 double cantidad = scanner.nextDouble();
@@ -117,7 +108,30 @@ public class SimuladorCajero {
             } else {
                 System.out.println("Opcion no valida. Intenta de nuevo.");
             }
-        }
+        } while(opcion != 8);
+        despedirse();
         scanner.close();
+    } 
+    
+    static void despedirse() {
+        System.out.println("Gracias por usar nuestra red de cajeros");
+        System.out.println("Bye!");
+    }
+    static void mostrarMenu() {
+        System.out.println();
+        System.out.println("[1] Consultar saldo");
+        System.out.println("[2] Retirar dinero (comision: " + comision + " eur)");
+        System.out.println("[3] Depositar dinero");
+        System.out.println("[4] Ver estadisticas");
+        System.out.println("[5] Salir");
+        System.out.println("[6] Ver ultimos movimientos");
+        System.out.println("[7] Borrar historial");
+        System.out.println("[8] Salir del sistema");
+        System.out.println("[0] Avanzar al siguiente dia (reinicia limite)");
+        System.out.print("Seleccione opcion: ");
+    }
+
+    static void consultarSaldo(double saldoActual) {
+        System.out.println("Tu saldo actual es: " +  saldoActual + " euros");
     }
 }
