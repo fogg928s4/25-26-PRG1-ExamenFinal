@@ -74,3 +74,21 @@ Creación de un método estático para la visualización de las estadísticas de la c
         }
     }
 ```
+
+### [6] Ver Últimos Movimientos
+
+Se crea un método estático para ver los últimos movimientos realizados. Un sencillo ciclo for que recorre el historial de tipos y de montos.
+
+```java
+    static void verUltimosMovimientos(String historialTipos, double historialMontos, int indice) {
+        System.out.println();
+        System.out.println("Ultimos Movimientos");
+        if (indiceHistorial == 0) {
+            System.out.println("(No hay movimientos recientes)");
+        } else {
+            for (int i = 0; i < indiceHistorial; i++) {
+                System.out.println((i+1) + ". " + historialTipos[i] + ": " + historialMontos[i] + " euros");
+            }
+        }
+    }
+```

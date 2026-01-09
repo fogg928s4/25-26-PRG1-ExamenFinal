@@ -72,15 +72,7 @@ public class SimuladorCajero {
                 mostrarEstadisticas(numeroOperaciones, totalRetirado, totalDepositado, comisionesTotales, saldoInicial, saldoActual);             
             }
             else if (opcion == 6) {
-                System.out.println();
-                System.out.println("Ultimos Movimientos");
-                if (indiceHistorial == 0) {
-                    System.out.println("(No hay movimientos recientes)");
-                } else {
-                    for (int i = 0; i < indiceHistorial; i++) {
-                        System.out.println((i+1) + ". " + historialTipos[i] + ": " + historialMontos[i] + " euros");
-                    }
-                }
+                verUltimosMovimientos(historialTipos, historialMontos, int indiceHistorial);
             } else if (opcion == 7) {
                 indiceHistorial = 0;
                 System.out.println("Historial de movimientos borrado.");
@@ -146,5 +138,17 @@ public class SimuladorCajero {
     }
     static void esConsistenteCuenta(double saldoActual,double saldoInicial, double totalDepositado, double totalRetirado, double comisionesTotales) {
         return saldoActual == saldoInicial + totalDepositado - totalRetirado - comisionesTotales;
+    }
+
+    static void verUltimosMovimientos(String historialTipos, double historialMontos, int indice) {
+        System.out.println();
+        System.out.println("Ultimos Movimientos");
+        if (indiceHistorial == 0) {
+            System.out.println("(No hay movimientos recientes)");
+        } else {
+            for (int i = 0; i < indiceHistorial; i++) {
+                System.out.println((i+1) + ". " + historialTipos[i] + ": " + historialMontos[i] + " euros");
+            }
+        }
     }
 }
