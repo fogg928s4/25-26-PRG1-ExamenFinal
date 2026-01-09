@@ -25,11 +25,11 @@ public class SimuladorCajero {
 
         int opcion = 1;
         do {
-            mostrarMenu();
+            mostrarMenu(comision);
             opcion = scanner.nextInt();
             if (opcion == 1) {
                 consultarSaldo(saldoActual);
-            } else if (opcion == 2) {
+            } else if (opcion == 2);
                 System.out.print("Cuanto deseas retirar? ");
                 double cantidad = scanner.nextDouble();
                 if (cantidad <= 0) {
@@ -83,11 +83,6 @@ public class SimuladorCajero {
                 } else {
                     System.out.println("- Estado de cuenta: INCONSISTENTE");
                 }
-            } else if (opcion == 5) {
-                System.out.println();
-                System.out.println("Gracias por usar nuestro cajero automatico");
-                System.out.println("Hasta pronto!");
-                break;
             }
             else if (opcion == 6) {
                 System.out.println();
@@ -108,16 +103,17 @@ public class SimuladorCajero {
             } else {
                 System.out.println("Opcion no valida. Intenta de nuevo.");
             }
-        } while(opcion != 8);
+        } while(opcion != 5);
         despedirse();
         scanner.close();
     } 
     
     static void despedirse() {
-        System.out.println("Gracias por usar nuestra red de cajeros");
-        System.out.println("Bye!");
+        System.out.println();
+        System.out.println("Gracias por usar nuestro cajero automatico");
+        System.out.println("Hasta pronto!");
     }
-    static void mostrarMenu() {
+    static void mostrarMenu(double comision) {
         System.out.println();
         System.out.println("[1] Consultar saldo");
         System.out.println("[2] Retirar dinero (comision: " + comision + " eur)");
@@ -133,5 +129,12 @@ public class SimuladorCajero {
 
     static void consultarSaldo(double saldoActual) {
         System.out.println("Tu saldo actual es: " +  saldoActual + " euros");
+    }
+
+    static void retirarDinero() {
+
+    }
+    static boolean verificarRetiro() {
+
     }
 }

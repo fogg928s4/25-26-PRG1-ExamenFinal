@@ -47,10 +47,8 @@ a la forma siguiente:
    do {
 		opcion = scanner.nextInt();
 		...
-   } while(opcion != 8);
+   } while(opcion != 5);
 ```
-
-Además agrega la opción **"[8] Salir del sistema"** al menú de opciones.
 
 
 ## Creacion de metodos para elementos del menú
